@@ -1,0 +1,33 @@
+﻿@model test_asp.net_mvc_4._8.ViewModel.UtentiViewModel
+
+<h2>Elenco Utenti</h2>
+
+@using (Html.BeginForm("Index", "Utenti", FormMethod.Get))
+{
+    <div>
+        @Html.CheckBoxFor(m => m.MostraNonAttivi, new { onchange = "this.form.submit();" })
+        <label for="MostraNonAttivi">Mostra utenti non attivi</label>
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrizione</th>
+            <th>Attivo</th>
+            <th>Matricola</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var utente in Model.Utenti)
+        {
+            <tr>
+                <td>@utente.Name</td>
+                <td>@utente.Description</td>
+                <td>@(utente.isActiveUser ? "Sì" : "No")</td>
+                <td>@utente.Matricola</td>
+            </tr>
+        }
+    </tbody>
+</table>
